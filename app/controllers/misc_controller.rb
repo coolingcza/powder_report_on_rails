@@ -102,7 +102,7 @@ class MiscController < ApplicationController
     @user_resorts.each do |r|
    
       forecast = ForecastIO.forecast(r.latitude, r.longitude, options = {params: {exclude: 'currently,minutely,flags,alerts'}})
-      puts "after forecast call"
+      puts forecast
       @data.build_marker_strings(forecast["daily"]["data"],r)
       @data.build_chart_series(forecast["hourly"]["data"],r)
     

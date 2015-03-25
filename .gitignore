@@ -13,4 +13,4 @@
 /tmp
 
 # Ignore environtment variable file (dotenv)
-.env
+# .env

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
   
   def log_out
     reset_session
-    redirect_to "/powder_report"
+    redirect_to "/powder_report" and return
   end  
   
 end

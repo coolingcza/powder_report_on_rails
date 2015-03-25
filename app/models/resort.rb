@@ -1,10 +1,11 @@
 class Resort < ActiveRecord::Base
   
-  attr_accessible :name, :latitude, :longitude, :state
+  # attr_accessible :name, :latitude, :longitude, :state
   
   has_and_belongs_to_many :users
   
   validates :name, :latitude, :longitude, :state, presence: true
+  validates :name, uniqueness: true
   validates :latitude, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
   

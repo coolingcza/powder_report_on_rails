@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
   
-  attr_accessible :name, :password
-  
+  has_secure_password
   has_and_belongs_to_many :resorts
   
-  validates :name, presence: true
-  validates :password, presence: true
+  validates :username, presence: true
+  validates :password_digest, presence: true
   
 end

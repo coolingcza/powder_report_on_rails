@@ -1,0 +1,42 @@
+
+
+<h2>Resort Selection</h2>
+
+<div class="select_resorts">
+
+<% if @surfeit_text %>
+  <h3><%= @surfeit_text %></h3>
+<% end %>
+
+<h3>Select State:</h3>
+
+<%= form_tag({controller: "misc", action: "set_state"}, method: "post") do %>
+  <%= select_tag(:state, options_for_select(@state_list)) %>
+
+  <% if params["surfeit"] %>
+    <%= hidden_field_tag("surfeit", value = "yes") %>
+  <% end %>
+  <%= submit_tag("Submit") %>
+<% end %>
+    
+  
+
+<% if @state %>
+
+  <h3 style>Select up to six resorts of interest:</h3>
+
+  <%= form_tag({controller: "misc", action: "change_resorts"}, method: "post") do %>
+
+    <% @resort_list.each do |r| %>
+      <%= check_box_tag r.id, 'r_id' %><%= r.name %><br>
+    <% end %>
+    <br>
+    <%= submit_tag("Submit") %>
+  <% end %>
+  
+<% end %>
+
+
+<%= button_to "Log Out", '/log_out' %>
+  
+</div>

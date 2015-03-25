@@ -1,0 +1,216 @@
+<div class="change_buttons">
+  <%= link_to "Change Resorts", select_resorts_path, method: :get %>
+  <%= link_to "Log Out", log_out_path %>
+</div>
+
+<div id="resort_legend">
+  <table>
+    <col width="200">
+    <col width="30">
+    <% @user_resorts.each do |r| %>
+      <tr>
+        <td><%= r.name %></td>
+        <td align="center"><b><%= r.name[0..0] %></b></td>
+      </tr>
+  <% end %>
+  </table>
+</div>
+
+<!-- Scroll table: -->
+
+<h4 class="map_row_title">Precipitation Probability</h4>
+<div class="map_legend">
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#C0C0C0"></td>
+      <td>0%</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#99FF99"></td>
+      <td>.01%-50%</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#00FF00"></td>
+      <td>51%-75%</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#009900"></td>
+      <td>76%-100%</td>
+    </tr>
+  </table>
+</div>
+
+<div class="map_row">
+<table>
+<tr align="center">
+  <td>
+    Today
+  </td>
+  <td>
+    Tomorrow
+  </td>
+  <td>
+    Day 2
+  </td>
+  <td>
+    Day 3
+  </td>
+</tr>
+
+<tr>
+  <td>
+  <img src=<%= @data.map_strings["0"]["prob"].url %> />
+  </td>
+  <td>
+  <img src=<%= @data.map_strings["1"]["prob"].url %> />
+  </td>
+  <td>
+  <img src=<%= @data.map_strings["2"]["prob"].url %> />
+  </td>
+  <td>
+  <img src=<%= @data.map_strings["3"]["prob"].url %> />
+  </td>
+</tr>
+</table>
+</div>
+
+<h4 class="map_row_title">Precipitation Type</h4>
+<div class="map_legend">
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#A0A0A0"></td>
+      <td>None</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#00CC00"></td>
+      <td>Rain</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#FF66FF"></td>
+      <td>Sleet</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#0066CC"></td>
+      <td>Snow</td>
+    </tr>
+  </table>
+</div>
+
+<div class="map_row">
+  <table>
+    <tr align="center">
+      <td>
+        Today
+      </td>
+      <td>
+        Tomorrow
+      </td>
+      <td>
+        Day 2
+      </td>
+      <td>
+        Day 3
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <img src=<%= @data.map_strings["0"]["type"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["1"]["type"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["2"]["type"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["3"]["type"].url %> />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h4 class="map_row_title">Precipitation Accumulation</h4>
+<div class="map_legend">
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#A0A0A0"></td>
+      <td>None</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#66B2FF"></td>
+      <td>Up to 2 in.</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#0080FF"></td>
+      <td>2 to 6 in.</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td style="width:15px;background-color:#004C99"></td>
+      <td>More than 6 in.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="map_row">
+  <table>
+    <tr align="center">
+      <td>
+        Today
+      </td>
+      <td>
+        Tomorrow
+      </td>
+      <td>
+        Day 2
+      </td>
+      <td>
+        Day 3
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <img src=<%= @data.map_strings["0"]["accum"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["1"]["accum"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["2"]["accum"].url %> />
+      </td>
+      <td>
+      <img src=<%= @data.map_strings["3"]["accum"].url %> />
+      </td>
+    </tr>
+  </table>
+</div>
+
+<%= javascript_include_tag "//www.google.com/jsapi" %>
+<%= javascript_include_tag "application", "chartkick" %>
+
+<% lib_vals = {fontName: "Times New Roman", pointSize: 0, hAxis:{format: 'M/d h a'}, colors:["00C","FF3","0C0","C60","39F","060"], legend: {position: 'bottom'}} %>
+
+<%= line_chart @data.temp_chart_data, {library: {title: "Temperature", vAxis: {title: "Degrees F"}}.merge(lib_vals)} %>
+
+<%= line_chart @data.wind_speed_chart_data, {library: {title: "Wind Speed", vAxis: {title: "MPH"}}.merge(lib_vals)} %>
+
+<%= line_chart @data.cloud_cover_chart_data,{library: {title: "Cloud Cover", vAxis: {title: "Percent", viewWindow: {max: 100, min: 0}}}.merge(lib_vals)} %>
+
+

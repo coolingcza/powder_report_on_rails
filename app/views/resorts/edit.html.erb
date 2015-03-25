@@ -1,0 +1,17 @@
+<h1>Update Resort Information:</h1>
+
+<%= form_for @resort do |f| %>
+  <%= f.label :name %>:
+  <%= f.text_field :name %><br />
+
+  <%= f.label :latitude %>:
+  <%= f.text_field :latitude %><br />
+  
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %><br />
+  
+  <%= f.label :state %>
+  <%= f.text_field :state %><br />
+
+  <%= f.submit %>
+<% end %>

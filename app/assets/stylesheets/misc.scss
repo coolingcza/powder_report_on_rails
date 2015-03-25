@@ -1,0 +1,117 @@
+// Place all the styles related to the misc controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  width: 100%;
+  font-family: Times;
+  margin: 0;
+  padding: 0;
+}
+
+header{
+  height: 115px;
+  background-image: url('images/snowypines-1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+header h1{
+  padding-top: 42px;
+  padding-left: 10px;
+}
+
+h2{
+  text-align: center;
+}
+
+.sign form{
+  width: 145px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.sign form input{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+#resort_legend {
+  padding: 1px;
+  
+  table{
+    margin: 45px auto 25px auto;
+  }
+}
+
+/*      .change_buttons button{
+  margin: 10px;
+}*/
+
+.change_buttons a{
+  display: inline;
+}
+
+.change_buttons{
+  width: 275px;
+  margin: 3em auto 3em auto;
+  
+  a{
+    display: inline;
+    height: 30px;
+    border-radius: 3px;
+    background-color: #E0E0E0;
+    border: 1px solid white;
+    margin: 10px;
+    padding: 1em;
+    text-decoration: none;
+    color: black;
+  }
+  a:hover{
+    border: 1px solid #C0C0C0;
+  }
+}
+
+.button_to{
+  height: 30px;
+  border-radius: 3px;
+  background-color: #E0E0E0;
+  border: 1px solid white;
+  margin: 10px;
+}
+
+.button_to:hover{
+  border: 1px solid #C0C0C0;
+}
+
+.map_legend{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.map_legend table{
+  width: 140px;
+  display: inline-block;
+}
+
+.map_row{
+  height: 200px;
+  overflow: scroll;
+}
+
+.map_row_title{
+  text-align: center;
+  display: block;
+  margin-top: 50px;
+}
+
+.select_resorts{
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+#message{
+  font-size: 60%;
+  padding-bottom: 1em;
+}

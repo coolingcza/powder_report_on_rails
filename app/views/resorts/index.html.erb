@@ -1,0 +1,13 @@
+<h1>Resorts Index</h1>
+
+<%= link_to "Add Resort", new_resort_path %>
+
+<div class="container">
+<% @resorts.each do |r| %>
+  <div class="id"><%= r.id %>:</div>
+  <div class="name"><%= r.name %></div>
+  <%= link_to "Info", resort_path(r) %>
+  <%= link_to "Edit", edit_resort_path(r) %>
+  <%= link_to "Delete", resort_path(r), method: :delete, data: {confirm: "Are you sure?"} %>
+<% end %>
+</div>

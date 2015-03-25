@@ -1,0 +1,67 @@
+
+<div class="sign">
+
+  <%= form_for @user do |f| %>
+    
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Invalid Form Information</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label "Confirm Password" %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+    
+    <div class="actions"><%= f.submit "Sign Up" %></div>
+  <% end %>
+  
+  <!-- <%= form_tag({controller: "misc", action: "check_sign_in"}, method: "post") do %>
+
+    <% if @message %>
+      <div id="message"><%= @message %><br></div>
+    <% end %>
+
+    <%= label_tag(:username, "Enter User Name:") %><br>
+    <%= text_field_tag("username") %><br>
+    <%= label_tag(:password, "Password:") %><br>
+    <%= password_field_tag("password") %><br>
+    <%= submit_tag("Sign Up") %>
+
+
+  <% end %> -->
+  
+
+</div>
+
+<div class="sign">
+  <%= form_tag sessions_path do %>
+  <% if flash %>
+    <div id="flash">
+      <p><%= flash[:alert] %></p>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= label_tag :username %><br />
+    <%= text_field_tag :username, params[:username] %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions"><%= submit_tag "Log In" %></div>
+<% end %>

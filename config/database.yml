@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: powder_report_on_rails_production
-  username: powder_report_on_rails
-  password: <%= ENV['POWDER_REPORT_ON_RAILS_DATABASE_PASSWORD'] %>

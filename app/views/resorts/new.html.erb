@@ -1,0 +1,29 @@
+<h1>New Resort Information:</h1>
+
+<% if @resort.errors.messages.length > 0 %>
+  <% @resort.errors.full_messages.each do |m| %>
+    <%= m %>
+  <% end %>
+<% end %>
+
+<%= form_for @resort do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br />
+
+  <%= f.label :latitude %>
+  <%= f.text_field :latitude %>
+  <br />
+  
+  <%= f.label :longitude %>
+  <%= f.text_field :longitude %>
+  <br />
+  
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+  <br />
+
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Index", resorts_path %>

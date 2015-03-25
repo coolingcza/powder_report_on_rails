@@ -1,4 +1,23 @@
 Rails.application.routes.draw do
+
+  resources :resorts, :users, :sessions
+  
+  root 'misc#log_in'
+  get '/powder_report', to: 'misc#log_in', as: 'home'
+  
+  get '/select_resorts', to: 'misc#select_resorts', as: 'select_resorts'
+
+  post '/set_state', to: 'misc#set_state', as: 'set_state'
+
+  get '/display', to: 'misc#display', as: 'display'
+  
+  post '/check_sign_in', to: 'misc#check_sign_in', as: 'check_sign_in'
+  
+  post '/change_resorts', to: 'misc#change_resorts', as: 'change_resorts'
+  
+  post '/log_out', to: 'sessions#log_out'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

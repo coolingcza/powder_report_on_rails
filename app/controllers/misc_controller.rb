@@ -90,14 +90,19 @@ class MiscController < ApplicationController
   
   def display
     
+    puts "I am in display method"
+    
     @user = User.find(session[:user_id])
+    puts @user
     @user_resorts = @user.resorts
+    puts @user_resorts
     @data = WxData.new()
+    puts "after @data assignment"
     
     @user_resorts.each do |r|
    
       forecast = ForecastIO.forecast(r.latitude, r.longitude, options = {params: {exclude: 'currently,minutely,flags,alerts'}})
-      
+      puts "after forecast call"
       @data.build_marker_strings(forecast["daily"]["data"],r)
       @data.build_chart_series(forecast["hourly"]["data"],r)
     

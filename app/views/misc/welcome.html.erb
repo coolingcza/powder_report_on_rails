@@ -1,6 +1,8 @@
 
 <div class="sign">
 
+  <%= debug @user %>
+
   <%= form_for @user do |f| %>
     
     <% if flash[:pwd_alert] %>

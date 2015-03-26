@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/select_resorts" and return
     else
-      redirect_to :back and return
+      render '/misc/welcome' and return
     end
   end
   

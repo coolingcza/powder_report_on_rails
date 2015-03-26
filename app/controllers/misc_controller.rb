@@ -15,34 +15,34 @@ class MiscController < ApplicationController
   end
   
   
-  def check_sign_in
-  
-    if User.exists?({username: params["username"]})
-      user = User.find_by_username params["username"]
-      #check password:
-      if BCrypt::Password.new(user.password) == params["password"]
-        session[:user_id] = user.id
-      else
-        redirect_to "/misc/welcome?invalid_password=true"
-      end
-    else
-      user = User.new({username: params["username"], password: params["password"]})
-      if user.valid?
-        user.password = BCrypt::Password.create(user.password)
-        user.save
-        session[:user_id] = user.id
-      else
-        #add something to pass error message?
-        redirect_to "/misc/welcome?invalid_username=true"
-      end
-    end
-  
-    if user.resorts.empty?
-      redirect_to "/select_resorts"
-    else
-      redirect_to "/display"
-    end
-  end
+  # def check_sign_in
+  #
+  #   if User.exists?({username: params["username"]})
+  #     user = User.find_by_username params["username"]
+  #     #check password:
+  #     if BCrypt::Password.new(user.password) == params["password"]
+  #       session[:user_id] = user.id
+  #     else
+  #       redirect_to "/misc/welcome?invalid_password=true"
+  #     end
+  #   else
+  #     user = User.new({username: params["username"], password: params["password"]})
+  #     if user.valid?
+  #       user.password = BCrypt::Password.create(user.password)
+  #       user.save
+  #       session[:user_id] = user.id
+  #     else
+  #       #add something to pass error message?
+  #       redirect_to "/misc/welcome?invalid_username=true"
+  #     end
+  #   end
+  #
+  #   if user.resorts.empty?
+  #     redirect_to "/select_resorts"
+  #   else
+  #     redirect_to "/display"
+  #   end
+  # end
   
   
   def select_resorts
@@ -90,19 +90,14 @@ class MiscController < ApplicationController
   
   def display
     
-    puts "I am in display method"
-    
     @user = User.find(session[:user_id])
-    puts @user
     @user_resorts = @user.resorts
-    puts @user_resorts
     @data = WxData.new()
-    puts "after @data assignment"
     
     @user_resorts.each do |r|
    
       forecast = ForecastIO.forecast(r.latitude, r.longitude, options = {params: {exclude: 'currently,minutely,flags,alerts'}})
-      puts "forecast is a ", forecast.class
+      
       @data.build_marker_strings(forecast["daily"]["data"],r)
       @data.build_chart_series(forecast["hourly"]["data"],r)
     

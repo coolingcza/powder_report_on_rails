@@ -3,6 +3,12 @@
 
   <%= form_for @user do |f| %>
     
+    <% if flash[:pwd_alert] %>
+      <div id="flash">
+        <p><%= flash[:pwd_alert] %></p>
+      </div>
+    <% end %>
+    
     <% if @user.errors.any? %>
       <div class="error_messages">
         <h2>Invalid Form Information</h2>
@@ -30,27 +36,13 @@
     <div class="actions"><%= f.submit "Sign Up" %></div>
   <% end %>
   
-  <!-- <%= form_tag({controller: "misc", action: "check_sign_in"}, method: "post") do %>
 
-    <% if @message %>
-      <div id="message"><%= @message %><br></div>
-    <% end %>
-
-    <%= label_tag(:username, "Enter User Name:") %><br>
-    <%= text_field_tag("username") %><br>
-    <%= label_tag(:password, "Password:") %><br>
-    <%= password_field_tag("password") %><br>
-    <%= submit_tag("Sign Up") %>
-
-
-  <% end %> -->
-  
 
 </div>
 
 <div class="sign">
   <%= form_tag sessions_path do %>
-  <% if flash %>
+  <% if flash[:alert] %>
     <div id="flash">
       <p><%= flash[:alert] %></p>
     </div>

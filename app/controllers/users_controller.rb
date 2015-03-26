@@ -2,14 +2,26 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    if @user.valid?
-      @user.save!
-      session[:user_id] = @user.id
-      redirect_to "/select_resorts" and return
+    
+    if @user.password == @user.password_confirmation
+      if @user.save
+        session[:user_id] = @user.id
+        redirect_to "/select_resorts" and return
+      else
+        redirect_to :back and return
+      end
     else
-      redirect_to :back and return
+      redirect_to(:back, flash: {pwd_alert: "Password and password confirmation do not match."}) and return
     end
   end
+    
+  #   if @user.save && @user.password == @user.password_confirmation
+  #     session[:user_id] = @user.id
+  #     redirect_to "/select_resorts" and return
+  #   else
+  #     redirect_to :back and return
+  #   end
+  # end
   
   def index
     @users = User.order("id ASC")

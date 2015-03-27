@@ -1,30 +1,21 @@
 class UsersController < ApplicationController
   
+  respond_to :html, :js
+  
   def create
     @user = User.new(user_params)
-    
-  #   if params["password"] == params["password_confirmation"]
-  #     if @user.save
-  #       session[:user_id] = @user.id
-  #       redirect_to "/select_resorts" and return
-  #     else
-  #       redirect_to :back and return
-  #     end
-  #   else
-  #     redirect_to(:back, flash: {pwd_alert: "Password and password confirmation do not match."}) and return
-  #   end
-  # end
     
     if @user.save
       session[:user_id] = @user.id
       redirect_to "/select_resorts" and return
+      
     else
-      #render '/misc/welcome' and return
+      #render '/misc/welcome' and return (second form submission goes to users index)
       raise "Invalid User Info"
     end
     
   rescue
-    #render '/misc/welcome'
+    #render '/misc/welcome' (same result: adds /users to url)
     render template: "misc/welcome"
   end
   
@@ -42,15 +33,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new()
   end
-  
-  # def create
-  #   @user = User.new(user_params)
-  #   if @user.valid?
-  #     @user.save
-  #     redirect_to action: "show", id: @user.id
-  #   else
-  #     render 'new'
-  #   end
   
   def edit
     @user = User.find_by(id: params[:id])

@@ -1,65 +1,16 @@
 <div class="change_buttons">
   <%= link_to "New User", new_user_path, remote: true %>
-  <!-- <%= link_to "Sign In", log_out_path, method: :post %> -->
+  <%= link_to "Sign In", new_session_path, remote: true %>
 </div>
 
 <div class="sign">
   
   <div id="up" style="display:none;"></div>
 
-  <%= form_for @user do |f| %>
-    
-    <% if flash[:pwd_alert] %>
-      <div id="flash">
-        <p><%= flash[:pwd_alert] %></p>
-      </div>
-    <% end %>
-    
-    <% if @user.errors.any? %>
-      <div class="error_messages">
-        <h2>Invalid Form Information</h2>
-        <ul>
-          <% @user.errors.full_messages.each do |m| %>
-            <li><%= m %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    
-    <div class="field">
-      <%= f.label :username %><br />
-      <%= f.text_field :username %>
-    </div>
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password %>
-    </div>
-    <div class="field">
-      <%= f.label "Confirm Password" %><br />
-      <%= f.password_field :password_confirmation %>
-    </div>
-    
-    <div class="actions"><%= f.submit "Sign Up" %></div>
-  <% end %>
-  
-
-
 </div>
 
 <div class="sign">
-  <%= form_tag sessions_path do %>
-  <% if flash[:alert] %>
-    <div id="flash">
-      <p><%= flash[:alert] %></p>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= label_tag :username %><br />
-    <%= text_field_tag :username, params[:username] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %></div>
-<% end %>
+    
+  <div id="in" style="display:none;"></div>
+
+</div>

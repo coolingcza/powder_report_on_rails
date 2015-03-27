@@ -1,5 +1,11 @@
+<div class="change_buttons">
+  <%= link_to "New User", new_user_path, remote: true %>
+  <!-- <%= link_to "Sign In", log_out_path, method: :post %> -->
+</div>
 
 <div class="sign">
+  
+  <div id="up" style="display:none;"></div>
 
   <%= form_for @user do |f| %>
     

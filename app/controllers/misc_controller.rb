@@ -4,8 +4,16 @@ class MiscController < ApplicationController
   require_dependency 'map_string'
   require_dependency 'chart_data'
   
+  respond_to :html, :js
+  
   def log_in
     @user = User.new
+    
+    # respond_to do |format|
+    #   format.html
+    #   format.json
+    # end
+    
     # if params["invalid_password"]
     #   @message = "Invalid Password, please try again:"
     # elsif params["invalid_username"]

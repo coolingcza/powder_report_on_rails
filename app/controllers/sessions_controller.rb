@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
         redirect_to "/display" and return
       end
     else
-      # flash.now[:alert] = 'Username or password is invalid.'
       redirect_to(:back, flash: {alert: "Username or password is invalid."}) and return
     end
   end

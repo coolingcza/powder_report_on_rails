@@ -24,8 +24,8 @@ class UsersController < ApplicationController
     end
     
   rescue
-    render '/misc/welcome'
-    
+    #render '/misc/welcome'
+    render template: "misc/welcome"
   end
   
   def index

@@ -19,8 +19,13 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to "/select_resorts" and return
     else
-      render '/misc/welcome' and return
+      #render '/misc/welcome' and return
+      raise "Invalid User Info"
     end
+    
+  rescue
+    render '/misc/welcome'
+    
   end
   
   def index

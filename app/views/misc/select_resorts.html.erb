@@ -37,6 +37,8 @@
 <% end %>
 
 
-<%= button_to "Log Out", '/log_out' %>
+<div class="change_buttons">
+  <%= link_to "Log Out", log_out_path, method: :post %>
+</div>
   
 </div>

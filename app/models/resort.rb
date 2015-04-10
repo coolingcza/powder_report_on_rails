@@ -17,8 +17,8 @@ class Resort < ActiveRecord::Base
   #
   # Returns: Array of hashes {"state" => unique record}. <-probably out of date
   
-  def self.get_states
-    results = self.select("distinct state")
+  def self.get_states_list
+    self.select("distinct state").order(state: :asc).map{ |a| [a.state,a.state] }
   end
   
 end

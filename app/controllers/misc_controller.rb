@@ -54,7 +54,7 @@ class MiscController < ApplicationController
   
   
   def select_resorts
-    @state_list = Resort.get_states.map { |a| [a.state, a.state] }
+    @state_list = Resort.get_states_list
     @state = session[:state]
   
     if params["surfeit"] 
